@@ -20,7 +20,7 @@ def create(event, context):
 
     item = {
         'id': str(uuid.uuid1()),
-        'text': data["Desde new-feautre-one"],
+        'text': "Desde new-feautre-one",
         'checked': False,
         'createdAt': timestamp,
         'updatedAt': timestamp,
