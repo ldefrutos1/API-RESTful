@@ -15,15 +15,22 @@ def get(event, context):
             'id': event['pathParameters']['id']
         }
     )
-          
+
+    target_language = event['target_language']
+        
     translate = boto3.client(service_name='translate', region_name='region', use_ssl=True)
 
-    result = translate.translate_text(item, SourceLanguageCode="en", TargetLanguageCode="de") 
+    traduccion  = translate.translate_text(item['text'], SourceLanguageCode="auto",  TargetLanguageCode=target_language) 
 
+
+    item = {
+        'text': traduccion
+    }
+    
     # create a response
     response = {
         "statusCode": 200,
-        "body": json.dumps(result['Item'],
+        "body": json.dumps(item['Item'],
                            cls=decimalencoder.DecimalEncoder)
     }
     
