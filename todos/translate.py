@@ -17,7 +17,7 @@ def translate(event, context):
     )
 
     target_language = event['pathParameters']['target_language'] 
-    translate = boto3.client(service_name='translate', region_name='region', use_ssl=True)
+    translate = boto3.client(service_name='translate')
 
     traduccion  = translate.translate_text(Text="texto", SourceLanguageCode="en",  TargetLanguageCode=target_language) 
 
