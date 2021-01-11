@@ -22,10 +22,17 @@ def translate(event, context):
     traduccion  = translate.translate_text(Text="texto", SourceLanguageCode="en",  TargetLanguageCode=target_language) 
 
 
+    item = result['Item']
+
+    item = {
+        'text': traduccion
+    }
+
+
     # create a response
     response = {
         "statusCode": 200,
-        "body": json.dumps(result['Item'],
+        "body": json.dumps(item,
                            cls=decimalencoder.DecimalEncoder)
     }
     
