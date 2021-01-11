@@ -10,7 +10,7 @@ def translate(event, context):
     table = dynamodb.Table(os.environ['DYNAMODB_TABLE'])
 
     # fetch todo from the database
-    item = table.get_item(
+    result = table.get_item(
         Key={
             'id': event['pathParameters']['id']
         }
@@ -25,7 +25,7 @@ def translate(event, context):
     # create a response
     response = {
         "statusCode": 200,
-        "body": json.dumps(item['Item'],
+        "body": json.dumps(result['Item'],
                            cls=decimalencoder.DecimalEncoder)
     }
     
