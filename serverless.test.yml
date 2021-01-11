@@ -1,0 +1,5 @@
+- name: List endpoint returns 200
+  endpoint:
+    function: list
+  response:
+    status: 200

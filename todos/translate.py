@@ -19,10 +19,10 @@ def translate(event, context):
     target_language = event['pathParameters']['target_language'] 
     translate = boto3.client(service_name='translate')
 
-    traduccion  = translate.translate_text(Text="texto", SourceLanguageCode="en",  TargetLanguageCode=target_language) 
-
+    
 
     item = result['Item']
+    traduccion  = translate.translate_text(Text=item['text'], SourceLanguageCode="en",  TargetLanguageCode=target_language) 
 
     item = {
         'text': traduccion
